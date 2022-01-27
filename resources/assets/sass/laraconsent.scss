@@ -1,0 +1,44 @@
+@import "node_modules/datatables.net-bs4";
+@import "node_modules/datatables.net-buttons-bs4";
+@import "node_modules/datatables.net-responsive-bs4";
+@import "node_modules/datatables.net-scroller-bs4";
+@import 'node_modules/flatpickr';
+@import "node_modules/select2";
+@import "../../../../../../node_modules/font-awesome/css/font-awesome.min.css";
+
+//Optional Text Editors
+@import "plugins/froala";
+@import "plugins/summernote";
+
+
+label.required:after {  content:"* required"; color: red;font-size: smaller; font-weight: bold}
+.consent-content ul li {line-height: 1.55}
+
+.consent-toggle {
+  margin-top: 40px;
+  padding: 1rem;
+  width: fit-content;
+
+  &.optional {
+    border: 2px dotted #fcb47e;
+  }
+  &.mandatory {
+    border: 2px dotted #b91c1c;
+  }
+
+}
+
+div.dataTables_wrapper {
+
+  div.dataTables_filter {
+    text-align: left;
+  }
+
+  div.dataTables_filter input {
+    margin-left: 0;
+  }
+
+  #dt_consent_options_datatables.dataTable td {
+    padding: 0.75rem 0 !important;
+  }
+}

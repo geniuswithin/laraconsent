@@ -1,0 +1,56 @@
+
+@page {  margin: 0 0; size: A4 }
+
+body{
+	font-family: "Tahoma", Calibri,Helvetica,Arial,sans-serif;
+	font-size: 12pt;
+	margin-top: 3cm;
+	margin-left: 2.5cm;
+	margin-right: 2.5cm;
+	margin-bottom: 2.5cm;
+}
+
+
+.print_hide {
+	display: none!important;
+}
+
+.page_break {
+	page-break-before: always;
+}
+
+p,li {line-height: 1.6}
+
+
+/*Hack to fix bullets misaligned when using a custom font*/
+ul > li:before { content: ''; display: block; float: left; line-height: 2.5em; }
+
+.print_footer {
+	position: fixed;
+	bottom: 0;
+	left:0;
+	height: 2cm;
+	width:100%;
+	background: rgb(94, 72, 121);
+	color:white;
+	font-size: 10pt;
+}
+
+.print_footer p {text-align: left;margin-top: 0.6cm}
+
+.print_header {
+	position: fixed;
+	top: 0;
+	left:0;
+	height: 2cm;
+	width:100%;
+	background: rgb(94, 72, 121);
+	color:white;
+	font-size: 10pt;
+}
+
+.print_header p {text-align: left; margin-left: 2.5cm; font-size: 13pt; margin-top: 0.4cm}
+
+.pagenum:before {
+	content: counter(page);
+}
