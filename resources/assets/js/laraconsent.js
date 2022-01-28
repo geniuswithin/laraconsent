@@ -9,14 +9,7 @@ export default class Laraconsent {
 
     _laraConsentInit() {
         this.helpers([
-            'initCSRF',
-            'select2',
-            'slugifyInput',
-            'flatpickr',
-            'versionPicker',
-            'slugify',
-            'statusToggles',
-            'toggleUserConsent'
+            'initCSRF'
         ]);
         console.log('User Consent Initialised');
     }

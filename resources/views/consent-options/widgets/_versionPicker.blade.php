@@ -7,3 +7,12 @@
                               'selected'=>[$consentOption->id],
                               'options'=>$consentOption->getAllVersionsForSelect()
                    ])@endcomponent
+
+
+@push('scripts')
+    <script>
+        jQuery(function () {
+            LaraConsent.helpers(['versionPicker']);
+        });
+    </script>
+@endpush

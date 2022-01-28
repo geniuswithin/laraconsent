@@ -126,12 +126,14 @@
         </div>
     </div>
 </form>
-@if(config('laraconsent.editor'))
+
 @push('scripts')
     <script>
         jQuery(function () {
+            LaraConsent.helpers(['slugifyInput','select2','flatpickr']);
+            @if(config('laraconsent.editor'))
             LaraConsent.helpers(['{{config('laraconsent.editor')}}']);
+            @endif
         });
     </script>
 @endpush
-@endif

@@ -50,3 +50,11 @@
 @if(count($consentOptions))
     <input type="submit" value="{{__('Update your consent options')}}" style="display: block; width: 100%; margin-top: 2em" class="btn btn-lg btn-primary">
 @endif
+
+@push('scripts')
+    <script>
+        jQuery(function () {
+            LaraConsent.helpers(['toggleUserConsent']);
+        });
+    </script>
+@endpush

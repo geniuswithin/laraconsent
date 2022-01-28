@@ -1,6 +1,11 @@
 // Helpers
 export default class Helpers {
 
+    /**
+     * Provide a method to run specific helpers
+     * @param helpers
+     * @param options
+     */
    static run(helpers, options = {}) {
        let allHelpers = {
            ckeditor: () => this.ckeditor(),
@@ -10,13 +15,10 @@ export default class Helpers {
            notify: (options)=> this.notify(options),
            select2: () => this.select2(),
            slugifyInput: () => this.slugifyInput(),
-           slugify: () => this.slugify(),
            summernote: () => this.summernote(),
            versionPicker: () => this.versionPicker(),
            statusToggles: () => this.statusToggles(),
            toggleUserConsent: () => this.toggleUserConsent(),
-
-
        };
 
        if (helpers instanceof Array) {
@@ -32,6 +34,9 @@ export default class Helpers {
        }
    }
 
+    /**
+     * Add Laravel CSRF token from meta tag
+     */
    static initCSRF()
    {
        jQuery.ajaxSetup({
@@ -41,6 +46,9 @@ export default class Helpers {
        });
    }
 
+    /**
+     * Load previous version of the consent when selected in dropdown
+     */
    static versionPicker() {
        jQuery('.js-versionPicker:not(.js-versionPicker-enabled)').each((index, element) => {
            let el = jQuery(element);
@@ -53,7 +61,21 @@ export default class Helpers {
        });
    }
 
+   /**
+    * Convert input field text to a url friendly slug
+    */
    static slugifyInput() {
+
+       String.prototype.slugify = function (separator = "-") {
+           return this
+               .toString()
+               .normalize('NFD')                   // split an accented letter in the base letter and the acent
+               .replace(/[\u0300-\u036f]/g, '')   // remove all previously split accents
+               .toLowerCase()
+               .replace(/\s+/g, '-')
+               .replace(/-+/g, '-');
+
+       };
 
        jQuery('.js-slugify:not(.js-slugify-enabled)').each((index, element) => {
            let el = jQuery(element);
@@ -64,8 +86,8 @@ export default class Helpers {
        });
    }
 
-    /*
-  * Flatpickr
+/**
+  * Flatpickr - Pretty date picker
   * <input type="text" class="js-flatpickr form-control">
   */
     static flatpickr() {
@@ -80,6 +102,7 @@ export default class Helpers {
     /**
      * FROALA Editor - requires a licence
      * Add Key to .env under MIX_FROALA_KEY=xxxxxx
+     * Enable in config file
      * Helpers.run('froala');
      * <div class="js-froala">{{ $model->text }}</div>
      */
@@ -165,6 +188,7 @@ export default class Helpers {
 
     /*
      * Select2, for more examples you can check out https://github.com/select2/select2
+     * The only option for select inputs
      */
     static select2() {
         jQuery('.js-select2:not(.js-select2-enabled)').each((index, element) => {
@@ -175,20 +199,7 @@ export default class Helpers {
         });
     }
 
-    static slugify()
-    {
-        String.prototype.slugify = function (separator = "-") {
-            return this
-                .toString()
-                .normalize('NFD')                   // split an accented letter in the base letter and the acent
-                .replace(/[\u0300-\u036f]/g, '')   // remove all previously split accents
-                .toLowerCase()
-                .replace(/\s+/g, '-')
-                .replace(/-+/g, '-');
-
-        };
-    }
-
+    /** Update users consent on optional consents via ajax call **/
     static toggleUserConsent()
     {
             jQuery(document).on('change','.js-toggle-consent', function (e) {
@@ -215,10 +226,9 @@ export default class Helpers {
             });
 
     }
+
+    /** Enable or disable a consent on the table **/
     static statusToggles() {
-        /**
-         * Toggle Status button action on user tables
-         */
         jQuery(document).on('click', '.toggleConsentStatus', function (e) {
             e.preventDefault();
             let button = jQuery(this);
@@ -252,6 +262,10 @@ export default class Helpers {
 
     }
 
+    /**
+     * Bootstrap Growl  - pretty popup notifications
+     * @param options
+     */
     static notify(options = {}) {
             jQuery.notify({
                     icon: options.icon || '',

@@ -1,13 +1,15 @@
 import 'bootstrap';
 import 'popper.js';
 import 'select2';
-import '../plugins/bootstrap-notify.min'
+import 'plugins/bootstrap-notify.min'
+import flatpikr from "flatpickr";
 
 /** Datatables Dependencies **/
 try {
     window.$ = window.jQuery = require('jquery');
-
-    //Required for exporting datatables to PDF, Excel or CSV
+    /**
+     * Enable these options if you wish to exporting datatables to PDF, Excel or CSV
+     */
     // require( 'jszip' );
     // require( 'pdfmake' );
     // require( 'datatables.net-buttons-bs4' );
@@ -22,16 +24,17 @@ try {
 
 } catch (e) {}
 
-/** Sexy Date Picker **/
-import flatpikr from "flatpickr";
 
+/** Summernote Editor **/
+import 'summernote/dist/summernote';
 
-
-/** Froala **/
+/**
+ * Uncomment these lines for Froala Editor -> Requires a license
+ */
 // import FroalaEditor from 'froala-editor'
 // window.FroalaEditor = FroalaEditor;
 
-//Plugins
+// Optional Froala Plugins
 // require('froala-editor/js/plugins/align.min')
 // require('froala-editor/js/plugins/word_paste.min')
 // require('froala-editor/js/plugins/code_view.min')
@@ -42,6 +45,3 @@ import flatpikr from "flatpickr";
 // require('froala-editor/js/plugins/lists.min')
 // require('froala-editor/js/plugins/colors.min')
 // require('froala-editor/js/plugins/link.min')
-
-/** Summernote Editor **/
-import 'summernote/dist/summernote';

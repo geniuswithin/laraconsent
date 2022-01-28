@@ -139,12 +139,14 @@
         </div>
     </div>
 </form>
-@if(config('laraconsent.editor'))
+
 @push('scripts')
     <script>
         jQuery(function () {
+            LaraConsent.helpers(['select2','statusToggles','flatpickr']);
+            @if(config('laraconsent.editor'))
             LaraConsent.helpers(['{{config('laraconsent.editor')}}']);
+            @endif
         });
     </script>
 @endpush
-@endif
