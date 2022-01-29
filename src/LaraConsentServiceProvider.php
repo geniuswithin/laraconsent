@@ -94,7 +94,7 @@ class LaraConsentServiceProvider extends ServiceProvider
         
         // Publishing the views.
         $this->publishes([
-                             __DIR__.'/../resources/views' => base_path('resources/views/vendor/ekoukltd'),
+                             __DIR__.'/../resources/views' => base_path('resources/views/vendor/ekoukltd/laraconsent'),
                          ], 'laraconsent.views');
     
         // Publishing Datatables.

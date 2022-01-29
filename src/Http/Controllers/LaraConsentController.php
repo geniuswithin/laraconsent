@@ -22,10 +22,10 @@ class LaraConsentController extends Controller
         //Hack to handle printing
         if($request->action && in_array($request->action,['csv','excel','pdf','print']))
         {
-            return $dataTable->render('vendor.ekoukltd.consent-options.index');
+            return $dataTable->render('vendor.ekoukltd.laraconsent.consent-options.index');
         }
         
-        return view('vendor.ekoukltd.consent-options.index')->with(
+        return view('vendor.ekoukltd.laraconsent.consent-options.index')->with(
             [
                 'dataTable' => $dataTable->html(),
                 'classes'   => 'table-bordered table-striped table-hover table-vcenter'
@@ -48,7 +48,7 @@ class LaraConsentController extends Controller
                 ->withErrors('No required Consents');
         }
         
-        return view('vendor.ekoukltd.user-consent.request', compact('consentOptions'));
+        return view('vendor.ekoukltd.laraconsent.user-consent.request', compact('consentOptions'));
     }
     
     public function store(Request $request)
@@ -93,7 +93,7 @@ class LaraConsentController extends Controller
         
         $consentOptions = $user->activeConsents;
         
-        return view('vendor.ekoukltd.user-consent.show', compact('consentOptions'));
+        return view('vendor.ekoukltd.laraconsent.user-consent.show', compact('consentOptions'));
     }
     
     public function toggle(ConsentOptionUser $consentOptionUser)
@@ -135,6 +135,6 @@ class LaraConsentController extends Controller
                 $ex->getMessage(), 500
             );
         }
-        return view('vendor.ekoukltd.user-consent.print', compact('consentOptions'));
+        return view('vendor.ekoukltd.laraconsent.user-consent.print', compact('consentOptions'));
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Ekoukltd\LaraConsent\Http\Controllers;
 
-use Ekoukltd\LaraConsent\Datatables\NotificationTypesDatatables;
+use Ekoukltd\LaraConsent\Datatables\ConsentOptionsDatatables;
 use Ekoukltd\LaraConsent\Http\Requests\ConsentOptionFormRequest;
 use Ekoukltd\LaraConsent\Models\ConsentOption;
 use Carbon\Carbon;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ConsentOptionController extends Controller
 {
-    public function index(NotificationTypesDatatables $dataTable)
+    public function index(ConsentOptionsDatatables $dataTable)
     {
         if (request()->ajax()) {
             return $dataTable->ajax();
@@ -23,13 +23,13 @@ class ConsentOptionController extends Controller
     {
         $consentOption = new ConsentOption();
         return view(
-            'vendor.ekoukltd.consent-options.create', compact('consentOption')
+            'vendor.ekoukltd.laraconsent.consent-options.create', compact('consentOption')
         );
     }
     
     public function show(ConsentOption $consentOption)
     {
-        return view('vendor.ekoukltd.consent-options.show', compact('consentOption'));
+        return view('vendor.ekoukltd.laraconsent.consent-options.show', compact('consentOption'));
     }
     
     public function edit(ConsentOption $consentOption)
@@ -41,7 +41,7 @@ class ConsentOptionController extends Controller
                 ->with(['success'=>'Version '.$consentOption->version.' is not editable. Editing current version '.$editableVersion->version]);
         }
         
-        return view('vendor.ekoukltd.consent-options.edit', compact('consentOption'));
+        return view('vendor.ekoukltd.laraconsent.consent-options.edit', compact('consentOption'));
     }
     
     public function update(
