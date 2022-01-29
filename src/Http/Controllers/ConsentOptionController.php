@@ -15,7 +15,7 @@ class ConsentOptionController extends Controller
         if (request()->ajax()) {
             return $dataTable->ajax();
         }
-        return view('vendor.ekoukltd.consent-options.index')->with(
+        return view('vendor.ekoukltd.laraconsent.consent-options.index')->with(
             ['dataTable' => $dataTable->html()]);
     }
     

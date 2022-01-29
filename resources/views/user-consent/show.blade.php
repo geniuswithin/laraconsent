@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    @component('vendor.ekoukltd.consent-options.widgets._viewUser',['consentOptions'=>$consentOptions])@endcomponent
+                    @component('vendor.ekoukltd.laraconsent.consent-options.widgets._viewUser',['consentOptions'=>$consentOptions])@endcomponent
 
                 </div>
             </div>
