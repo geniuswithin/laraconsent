@@ -126,7 +126,7 @@ class LaraConsentController extends Controller
         
         $pdf = App::make('dompdf.wrapper');
         try {
-            $pdf->loadView('vendor.ekoukltd.user-consent.print',
+            $pdf->loadView('vendor.ekoukltd.laraconsent.user-consent.print',
                            ['consentOptions' => $user->activeConsents])
                 ->setPaper('A4');
             return $pdf->stream('Approved Consent');
