@@ -5,7 +5,6 @@ namespace Ekoukltd\LaraConsent\Http\Controllers;
 use Ekoukltd\LaraConsent\Datatables\ConsentOptionsDatatables;
 use Ekoukltd\LaraConsent\Http\Requests\ConsentOptionFormRequest;
 use Ekoukltd\LaraConsent\Models\ConsentOption;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class ConsentOptionController extends Controller
