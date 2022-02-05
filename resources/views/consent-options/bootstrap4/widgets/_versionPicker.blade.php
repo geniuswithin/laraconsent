@@ -1,4 +1,4 @@
-@component('laraconsent::components.inputs.select',[
+@component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.select',[
                               'name'=>'version',
                               'id'=>'versionPicker',
                               'class'=>'js-versionPicker',

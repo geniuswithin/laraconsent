@@ -1,26 +1,15 @@
-<x-app-layout>
-    <x-slot name="header">
-        <div class="d-flex justify-content-between">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('laraconsent::admin.show-page-title',['title'=>$consentOption]) }}
-        </h2>
-            <div>
-                @include('vendor.ekoukltd.laraconsent.consent-options.widgets._versionPicker')
-            </div>
-        </div>
-    </x-slot>
+@extends('lat::layouts.backend')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                  @include('vendor.ekoukltd.laraconsent.consent-options.widgets._viewAdmin')
-                </div>
-            </div>
-        </div>
+@section('pageHeader',__('laraconsent::admin.show-page-title',['title'=>$consentOption]))
+@section('metaTitle',__('laraconsent::admin.show-page-title',['title'=>$consentOption]))
+@section('subHeader')
+
+@endsection
+
+@section('content')
+    <div class="d-grid gap-2 col-4 mb-0 ms-auto">
+        @component('vendor.ekoukltd.laraconsent.consent-options.'.config('laraconsent.css_format').'.widgets._versionPicker',['consentOption'=>$consentOption])@endcomponent
     </div>
 
-</x-app-layout>
-
-
-
+    @component('vendor.ekoukltd.laraconsent.consent-options.'.config('laraconsent.css_format').'.widgets._viewAdmin',['consentOption'=>$consentOption])@endcomponent
+@endsection

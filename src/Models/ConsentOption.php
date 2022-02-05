@@ -335,7 +335,7 @@ class ConsentOption extends Model
     {
         $str = '';
         foreach ($this->models as $model) {
-            $str .= "<span class='badge badge-info'><i class='fa fa-user'></i> ".self::modelBasename(
+            $str .= "<span class='badge rounded-pill  badge-info bg-info'><i class='fa fa-user'></i> ".self::modelBasename(
                     $model
                 ).'</span> ';
         }
@@ -355,7 +355,7 @@ class ConsentOption extends Model
      */
     public function getRequiredBadgeAttribute()
     {
-        return $this->is_mandatory ? '<span class="badge badge-success"><i class="fa fa-check-square" aria-hidden="true"></i> Required</span>' : '<span class="badge badge-info"><i class="fa fa-question-circle" aria-hidden="true"></i> Optional</span>';
+        return $this->is_mandatory ? '<span class="badge rounded-pill badge-success bg-success"><i class="fa fa-check-square" aria-hidden="true"></i> Mandatory</span>' : '<span class="badge rounded-pill badge-info bg-info"><i class="fa fa-question-circle" aria-hidden="true"></i> Optional</span>';
     }
     
     /**
@@ -363,7 +363,7 @@ class ConsentOption extends Model
      */
     public function getUsersAcceptedBadgeAttribute()
     {
-        return '<span class="badge badge-success"><i class="fa fa-thumbs-up"></i> Accepted '.$this->usersAcceptedTotal.'</span>';
+        return '<span class="badge rounded-pill badge-success bg-success"><i class="fa fa-thumbs-up"></i> Accepted '.$this->usersAcceptedTotal.'</span>';
     }
     
     /**
@@ -371,7 +371,7 @@ class ConsentOption extends Model
      */
     public function getUsersDeclinedBadgeAttribute()
     {
-        return $this->is_mandatory ? '' : '<span class="badge badge-danger ml-2"><i class="fa fa-thumbs-down"></i> Declined '.$this->usersDeclinedTotal.'</span>';
+        return $this->is_mandatory ? '' : '<span class="badge rounded-pill badge-danger bg-danger ms-2"><i class="fa fa-thumbs-down"></i> Declined '.$this->usersDeclinedTotal.'</span>';
     }
     
     /**

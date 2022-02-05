@@ -1,12 +1,10 @@
-<?php
-?>
 <form method="POST" action="{{route((config('laraconsent.routes.user.prefix').'.store'))}}">
     @csrf
     @forelse ($consentOptions as $model)
         <div class="card mb-4 consent-content">
             <div class="card-header d-flex align-items-center">
                 <div class="h4 mb-0">{{$model}}</div>
-                <div class="h5 ml-auto">
+                <div class="h5 ms-auto">
                     {!!$model->requiredBadge!!}
                 </div>
             </div>
@@ -24,7 +22,7 @@
                     {{__('Last Updated')}}: {{$model->updated_at->format('d M Y')}}
                 </p>
 
-                @component('laraconsent::components.inputs.toggle_consent',['model'=>$model])@endcomponent
+                @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.toggle_consent',['model'=>$model])@endcomponent
             </div>
         </div>
 

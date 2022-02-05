@@ -1,21 +1,11 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('laraconsent::admin.index-page-title') }}
-        </h2>
-    </x-slot>
+@extends('lat::layouts.backend')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                  @include('vendor.ekoukltd.laraconsent.consent-options.widgets._dataTable')
-                </div>
-            </div>
-        </div>
-    </div>
+@section('pageHeader')
+    <i class='fa fa-check-square'></i> {{__('laraconsent::admin.index-page-title')}}
+@endsection
 
-</x-app-layout>
+@section('metaTitle',__('laraconsent::admin.index-page-title'))
 
-
-
+@section('content')
+    @include('vendor.ekoukltd.laraconsent.consent-options.'.config('laraconsent.css_format').'.widgets._dataTable')
+@endsection

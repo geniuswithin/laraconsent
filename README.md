@@ -51,7 +51,7 @@ Or to allow printing tables to PDF, Excel or CSV, include buttons and JS PDF mak
  npm i jquery bootstrap@4.6.1 select2 datatables.net-bs4 datatables.net-buttons-bs4 datatables.net-responsive datatables.net-responsive-bs4 datatables.net-scroller-bs4 jszip pdfmake
  ```
 
-Note: These templates are using bootstrap 4.6.1.  V5 may be switched out if required.
+Bootstrap 4 & Bootstrap 5 templates are included
 
 Publish views to directory /resources/views/vendor/ekoukltd & /resources/views/vendor/datatables
 ``` bash

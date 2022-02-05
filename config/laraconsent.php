@@ -6,12 +6,12 @@ return [
         'admin' => [
             //Admin web routes should only be available to admins
             'prefix'     => 'consent-admin',
-            'middleware' => ['web']
+            'middleware' => ['web','auth']
         ],
         'user'  => [
             //User routes should be available to any logged in user
             'prefix'     => 'user-consent',
-            'middleware' => ['web']
+            'middleware' => ['web','auth']
         ],
     ],
     
@@ -27,9 +27,10 @@ return [
         'App\Models\Admin',
     ],
     //Which HTML Editor to use
-    //Chooose from froala, summernote, none
+    //Chooose from froala, summernote, ckeditor5-classic
     //Froala requires a licence key in .env MIX_FROALA_KEY=xxxxxx
-    'editor'=>'summernote',
+    //Summernote doesn't work with bootstrap5.
+    'editor'=>'ckeditor5',
     
     //Whether to log when consent has been given
     //Probably only interested in logging the mandatory events
@@ -47,5 +48,20 @@ return [
     
     //send user an email with a copy of the consent after saving.
     'notify' => ['mail'],
-    'email-template'=>'vendor.ekoukltd.laraconsent.layouts.email'
+    
+    'email-template'=>'vendor.ekoukltd.laraconsent.layouts.email',
+    
+    //Which templates to use: bootstrap4, bootstrap5, tailwind
+    //This will use the appropriate view paths
+    'css_format' =>'bootstrap5',
+    
+    
+    'datatables'=>[
+        'dom'=>[
+            'bootstrap4'=>"<'row'<'col-sm-12 text-right'B>><'row'<'col-sm-12 col-md-6 text-left'f><'col-sm-12 col-md-6 text-right'i>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5 mb-3'l><'col-sm-12 col-md-7 mb-3'p>>",
+            'bootstrap5'=>"<'row'<'col-sm-12 text-end'B>><'row'<'col-sm-12 col-md-6 text-start'f><'col-sm-12 col-md-6 text-end'i>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5 mb-3'l><'col-sm-12 col-md-7 mb-3'p>>",
+            'tailwind'=>""
+            ]
+        
+    ]
 ];

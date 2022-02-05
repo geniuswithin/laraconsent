@@ -33,7 +33,7 @@ class ConsentsUpdatedMail extends Mailable
 
         $consentOptions = $this->user->activeConsents()->get();
         
-        $content = view('vendor.ekoukltd.laraconsent.consent-options.widgets._viewUserPrint',['consentOptions'=>$consentOptions])->render();
+        $content = view('vendor.ekoukltd.laraconsent.consent-options.'.config('laraconsent.css_format').'.widgets._viewUserPrint',['consentOptions'=>$consentOptions])->render();
     
         return $this->from(config('mail.from.address'),
                            config('mail.from.name'))->view(config('laraconsent.email-template'))

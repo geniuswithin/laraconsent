@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Ekoukltd\LaraConsent\Http\Controllers\LaraConsentController;
 
 //Routes for users to view and save their consent
+Route::get('/', [LaraConsentController::class, 'index'])->name(config('laraconsent.routes.user.prefix').'.index');
 Route::get('/request', [LaraConsentController::class, 'request'])->name(config('laraconsent.routes.user.prefix').'.request');
 Route::post('/request', [LaraConsentController::class, 'store'])->name(config('laraconsent.routes.user.prefix').'.store');
 Route::get('/my-consents', [LaraConsentController::class, 'show'])->name(config('laraconsent.routes.user.prefix').'.show');

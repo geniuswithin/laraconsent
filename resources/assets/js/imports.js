@@ -1,29 +1,3 @@
-import 'bootstrap';
-import 'popper.js';
-import 'select2';
-import 'plugins/bootstrap-notify.min'
-import flatpikr from "flatpickr";
-
-/** Datatables Dependencies **/
-try {
-    window.$ = window.jQuery = require('jquery');
-    /**
-     * Enable these options if you wish to exporting datatables to PDF, Excel or CSV
-     */
-    // require( 'jszip' );
-    // require( 'pdfmake' );
-    // require( 'datatables.net-buttons-bs4' );
-    // require( 'datatables.net-buttons/js/buttons.colVis.js' );
-    // require( 'datatables.net-buttons/js/buttons.flash.js' );
-    // require( 'datatables.net-buttons/js/buttons.html5.js' );
-    // require( 'datatables.net-buttons/js/buttons.print.js' );
-    require( 'datatables.net-bs4' );
-    require( 'datatables.net-scroller-bs4' );
-    require( 'datatables.net-responsive-bs4' );
-
-
-} catch (e) {}
-
 
 /** Summernote Editor **/
 import 'summernote/dist/summernote';

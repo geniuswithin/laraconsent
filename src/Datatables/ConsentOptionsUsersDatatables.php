@@ -110,18 +110,16 @@ class ConsentOptionsUsersDatatables extends DataTable
             ->orderBy($totalColumns-1, 'desc');
         $builder->setTableId("dt_".Str::snake(class_basename($this)));
         $builder->buttons(
-            Button::make('export')->addClass('btn btn-sm btn-alt-secondary mr-2'),
+            Button::make('export')->addClass('btn btn-sm btn-alt-secondary me-2'),
             Button::make('print')->addClass('btn btn-sm btn-alt-secondary'),
         );
         
         return $builder->minifiedAjax()
-            ->responsive(true)
+            ->responsive(false)
             ->info(true)
-            ->dom(
-                "<'row'<'col-sm-12 text-right'B>><'row'<'col-sm-12 col-md-6 text-left'f><'col-sm-12 col-md-6 text-right'i>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5 mb-3'l><'col-sm-12 col-md-7 mb-3'p>>"
-            )
+            ->dom(config('laraconsent.datatables.dom.'.config('laraconsent.css_format')))
             ->language([
-                           'processing'        => '<i class="fa fa-4x fa-cog fa-spin text-warning"></i>',
+                           'processing'        => '<i class="fa fa-4x fa-cog fa-spin text-warning"></i> Loading Data',
                            'search'            => "_INPUT_",
                            'searchPlaceholder' => "Search..",
                            'info'              => "<strong>_TOTAL_</strong> Users",
@@ -136,13 +134,14 @@ class ConsentOptionsUsersDatatables extends DataTable
             )
             ->parameters([
                              'classes' => [
-                                 'sWrapper'      => "dataTables_wrapper dt-bootstrap4",
+                                 'sWrapper'      => "dataTables_wrapper dt-".config('laraconsent.css_format'),
                                  'sFilterInput'  => "form-control form-control-lg",
                                  'sLengthSelect' => "form-control form-control-lg",
                              ]
                          ])
             ->pagingType('full_numbers')
-            ->autoWidth(false);
+            ->autoWidth(true)
+            ->scrollX(true);
     }
     
     /**
@@ -153,16 +152,17 @@ class ConsentOptionsUsersDatatables extends DataTable
     protected function getColumns()
     {
     
-       
+        $keys  = ConsentOption::getAllKeys();
+        
         $cols =  [
             Column::make('consentable_type')->title('User Type'),
             Column::make('groupedemail')->title('Email')
         ];
         
-        $keys  = ConsentOption::getAllKeys();
         foreach($keys as $key){
             $cols[]= Column::make($key)->addClass('text-center')->searchable(false);
         }
+        
         $cols[] = Column::make('created_at')->title('Updated');
         return $cols;
         

@@ -2,7 +2,7 @@
 
 return [
     'request-page-title'=>'Your Consent is required',
-    'show-page-title'=>'Your Consents',
+    'show-page-title'=>'Your Contracts',
     'print-meta-title'=>'Your Consents',
     'print-description'=>'Your Consent Agreements',
     'print-author'=>'Your Company',

@@ -26,7 +26,7 @@ class ConsentOptionsDatatables extends DataTable
                 $query->whereRaw("title like ?", ["%{$keyword}%"]);
                 $query->orWhereRaw("text like ?", ["%{$keyword}%"]);
             })
-            ->addColumn('card', 'laraconsent::components.datatables.consent-card')
+            ->addColumn('card', 'laraconsent::consent-options.'.config('laraconsent.css_format','bootstrap4').'.widgets.consent-card')
             ->rawColumns(['card']);
     }
     
@@ -71,14 +71,12 @@ class ConsentOptionsDatatables extends DataTable
         return $builder->minifiedAjax()
             ->responsive(true)
             ->info(true)
-            ->dom(
-                "<'row'<'col-sm-12 text-right'B>><'row'<'col-sm-12 col-md-6 text-left'f><'col-sm-12 col-md-6 text-right'i>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5 mb-3'l><'col-sm-12 col-md-7 mb-3'p>>"
-            )
+            ->dom(config('laraconsent.datatables.dom.'.config('laraconsent.css_format')))
             ->language([
-                           'processing'        => '<i class="fa fa-4x fa-cog fa-spin text-warning"></i>',
+                           'processing'        => '<span class="text-warning"><i class="fa fa-2x fa-cog fa-spin me-3 mr-3" style=" vertical-align: middle;"></i> Loading Data</span>',
                            'search'            => "_INPUT_",
-                           'searchPlaceholder' => "Search..",
-                           'info'              => "<strong>_TOTAL_</strong> Consent Options",
+                           'searchPlaceholder' => "Search contracts...",
+                           'info'              => "<strong>_TOTAL_</strong> Contract Templates",
                            'paginate'          => [
                                'first'    => '<i class="fa fa-angle-double-left"></i>',
                                'previous' => '<i class="fa fa-angle-left"></i>',
@@ -91,7 +89,7 @@ class ConsentOptionsDatatables extends DataTable
             ->buttons([])
             ->parameters([
                              'classes' => [
-                                 'sWrapper'      => "dataTables_wrapper dt-bootstrap4",
+                                 'sWrapper'      => "dataTables_wrapper dt-".config('laraconsent.css_format'),
                                  'sFilterInput'  => "form-control form-control-lg",
                                  'sLengthSelect' => "form-control form-control-lg",
                              ],
@@ -111,7 +109,7 @@ class ConsentOptionsDatatables extends DataTable
     {
         $btn = '<div class="d-flex align-items-center">
             <span class="h4 mb-0">Consent Forms</span>
-            <a class="ml-auto btn btn-primary" title="Add New Consent Form" href="'.route(
+            <a class="ms-auto btn btn-primary" title="Add New Consent Form" href="'.route(
                 config('laraconsent.routes.admin.prefix').'.create'
             ).'">Add New</a>
         </div>
@@ -126,7 +124,7 @@ class ConsentOptionsDatatables extends DataTable
                 ->searchable(false)
                 ->className('d-none'),
             Column::make('card')
-                ->title($btn)
+                ->title("")
                 ->sortable(false)
         ];
     }

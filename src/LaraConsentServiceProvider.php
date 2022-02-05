@@ -89,7 +89,7 @@ class LaraConsentServiceProvider extends ServiceProvider
     {
         // Publishing the configuration file.
         $this->publishes([
-                             __DIR__.'/../config/laraconsent.php' => config_path('laraconsent.php'),
+                             __DIR__.'/../config/laraconsent.php' => config('laraconsent.php'),
                          ], 'laraconsent.config');
         
         // Publishing the views.

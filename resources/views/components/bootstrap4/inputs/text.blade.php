@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label class="label" for="{{$name??''}}">{{ $label ?? ($name??'') }}
+    <label class=form-label" for="{{$name??''}}">{{ $label ?? ($name??'') }}
         @isset($required)
             &nbsp;<span class="text-danger">*</span>
         @endisset

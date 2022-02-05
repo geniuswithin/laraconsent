@@ -19,6 +19,7 @@ export default class Helpers {
            versionPicker: () => this.versionPicker(),
            statusToggles: () => this.statusToggles(),
            toggleUserConsent: () => this.toggleUserConsent(),
+           ckeditor5: () => this.ckeditor5()
        };
 
        if (helpers instanceof Array) {
@@ -187,6 +188,48 @@ export default class Helpers {
     }
 
     /*
+  * CKEditor 5 init, for more examples you can check out http://ckeditor.com/
+  *
+  * Helpers.run('js-ckeditor5');
+  *
+  * Example usage:
+  *
+  * <div id="js-ckeditor5-classic">Hello classic CKEditor 5!</div>
+  * ..or..
+  * <div id="js-ckeditor5-inline">Hello inline CKEditor 5!</div>
+  *
+  */
+    static ckeditor5() {
+        let ckeditor5Inline = document.querySelector('#js-ckeditor5-inline');
+        let ckeditor5Full = document.querySelector('#js-ckeditor5-classic');
+
+        console.log(ckeditor5Inline,ckeditor5Full);
+        // Init inline text editor
+        if (ckeditor5Inline) {
+            InlineEditor
+                .create(document.querySelector('#js-ckeditor5-inline'))
+                .then(editor => {
+                    window.editor = editor;
+                })
+                .catch(error => {
+                    console.error('There was a problem initializing the inline editor.', error);
+                });
+        }
+
+        // Init full text editor
+        if (ckeditor5Full) {
+            ClassicEditor
+                .create(document.querySelector('#js-ckeditor5-classic'))
+                .then(editor => {
+                    window.editor = editor;
+                })
+                .catch(error => {
+                    console.error('There was a problem initializing the classic editor.', error);
+                });
+        }
+    }
+
+    /*
      * Select2, for more examples you can check out https://github.com/select2/select2
      * The only option for select inputs
      */
@@ -209,18 +252,18 @@ export default class Helpers {
                     method: "POST",
                     success: function (data) {
                         if (data.hasOwnProperty('success')) {
-                            LaraConsent.helpers('notify', {type: data.colour, icon: 'fa fa-check mr-1', message: data.message});
+                            LaraConsent.helpers('notify', {type: data.colour, icon: 'fa fa-check me-1', message: data.message});
                         }
                         if (data.hasOwnProperty('error')) {
                             //Undo Toggle
                             input.prop("checked", !input.prop("checked"));
-                            LaraConsent.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.message});
+                            LaraConsent.helpers('notify', {type: 'danger', icon: 'fa fa-times me-1', message: data.message});
                         }
 
                     },
                     error: function () {
                         input.prop("checked", !input.prop("checked"));
-                        LaraConsent.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "There was an error changing status"});
+                        LaraConsent.helpers('notify', {type: 'danger', icon: 'fa fa-times me-1', message: "There was an error changing status"});
                     }
                 });
             });
@@ -242,20 +285,20 @@ export default class Helpers {
                 success: function (data) {
                     if (data.hasOwnProperty('success')) {
                         console.log(data);
-                        LaraConsent.helpers('notify', {type: data.colour, icon: 'fa fa-check mr-1', message: data.message});
+                        LaraConsent.helpers('notify', {type: data.colour, icon: 'fa fa-check me-1', message: data.message});
                     }
                     if (data.hasOwnProperty('error')) {
                         //Undo Toggle
                         input.prop("checked", !input.prop("checked"));
                         button.toggleClass('custom-control-success custom-control-light');
-                        LaraConsent.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: data.message});
+                        LaraConsent.helpers('notify', {type: 'danger', icon: 'fa fa-times me-1', message: data.message});
                     }
 
                 },
                 error: function () {
                     input.prop("checked", !input.prop("checked"));
                     button.toggleClass('custom-control-success custom-control-light');
-                    LaraConsent.helpers('notify', {type: 'danger', icon: 'fa fa-times mr-1', message: "There was an error changing status"});
+                    LaraConsent.helpers('notify', {type: 'danger', icon: 'fa fa-times me-1', message: "There was an error changing status"});
                 }
             });
         });

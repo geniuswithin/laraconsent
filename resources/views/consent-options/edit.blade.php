@@ -1,21 +1,9 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('laraconsent::admin.edit-page-title',['title'=>$consentOption->title,'version'=>$consentOption->version])}}
-        </h2>
-    </x-slot>
+@extends('lat::layouts.backend')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
+@section('pageHeader',__('laraconsent::admin.edit-page-title',['title'=>$consentOption->title,'version'=>$consentOption->version]))
+@section('metaTitle',__('laraconsent::admin.edit-page-title',['title'=>$consentOption->title,'version'=>$consentOption->version]))
 
-                    @component('vendor.ekoukltd.laraconsent.consent-options.widgets._editForm',['consentOption'=>$consentOption])@endcomponent
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-</x-app-layout>
+@section('content')
+    @component('vendor.ekoukltd.laraconsent.consent-options.'.config('laraconsent.css_format').'.widgets._editForm',['consentOption'=>$consentOption])@endcomponent
+@endsection
 

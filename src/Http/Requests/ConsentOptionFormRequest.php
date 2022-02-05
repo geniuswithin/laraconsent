@@ -31,7 +31,7 @@ class ConsentOptionFormRequest extends FormRequest
             'label'             => 'required|string|max:191',
             'text'              => 'required|string',
             'enabled'           => 'boolean',
-            'is_mandatory'      => 'required|boolean',
+            'is_mandatory'      => 'boolean',
             'published_at'      => 'required|date_format:Y-m-d H:i',
             'force_user_update' => 'boolean',
             'sort_order'        => 'integer',

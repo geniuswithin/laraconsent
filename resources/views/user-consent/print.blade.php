@@ -4,8 +4,8 @@
 @section('author',__('laraconsent::user.print-author'))
 
 @section('content')
-    @component('vendor.ekoukltd.laraconsent.user-consent.widgets._printHeader')@endcomponent
-    @component('vendor.ekoukltd.laraconsent.user-consent.widgets._printFooter')@endcomponent
-    @component('vendor.ekoukltd.laraconsent.consent-options.widgets._viewUser',['consentOptions'=>$consentOptions])@endcomponent
+    @component('vendor.ekoukltd.laraconsent.user-consent.print.header')@endcomponent
+    @component('vendor.ekoukltd.laraconsent.user-consent.print.footer')@endcomponent
+    @component('vendor.ekoukltd.laraconsent.user-consent.'.config('laraconsent.css_format').'.widgets.my_consents',['consentOptions'=>$consentOptions])@endcomponent
 @endsection
 

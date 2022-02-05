@@ -16,7 +16,7 @@
 
     <div class="row">
         <div class="col">
-            @component('laraconsent::components.inputs.text', [
+            @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.text', [
                  'name' => 'title',
                  'id' => 'title',
                  'label' => __('Title'),
@@ -28,7 +28,7 @@
     </div>
     <div class="row">
         <div class="col">
-            @component('laraconsent::components.inputs.text', [
+            @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.text', [
                 'name' => 'label',
                 'id' => 'label',
                 'label' => __('Label for checkbox'),
@@ -40,7 +40,7 @@
     </div>
     <div class="row">
         <div class="col">
-            @component('laraconsent::components.inputs.text', [
+            @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.text', [
                 'name' => 'sort_order',
                 'id' => 'sort_order',
                 'label' => __('Sort Order'),
@@ -52,7 +52,7 @@
     </div>
     <div class="row">
         <div class="col">
-            @component('laraconsent::components.inputs.toggle_inline',[
+            @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.toggle_inline',[
                              'name'=>'enabled',
                              'id'=>'enabled',
                              'groupClass'=>'toggleConsentStatus',
@@ -67,7 +67,7 @@
     </div>
     <div class="row">
         <div class="col">
-            @component('laraconsent::components.inputs.toggle_inline',[
+            @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.toggle_inline',[
                              'name'=>'is_mandatory',
                              'id'=>'is_mandatory',
                              'label'=>__("Is Mandatory"),
@@ -78,7 +78,7 @@
     </div>
     <div class="row">
         <div class="col">
-            @component('laraconsent::components.inputs.toggle_inline',[
+            @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.toggle_inline',[
                                     'name'=>'force_user_update',
                                     'id'=>'force_user_update',
                                     'label'=>__("Require all users to re-confirm after this update"),
@@ -89,7 +89,7 @@
     </div>
     <div class="row">
         <div class="col">
-            @component('laraconsent::components.inputs.select',[
+            @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.select',[
                               'name'=>'models[]',
                               'id'=>'models',
                               'class'=>'js-select2',
@@ -102,7 +102,7 @@
     </div>
     <div class="row">
         <div class="col">
-            @component('laraconsent::components.inputs.date_picker',[
+            @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.date_picker',[
                 'name'=>'published_at',
                 'label'=>__("Publish Date"),
                 'required'=>true,
@@ -113,7 +113,7 @@
     </div>
     <div class="row">
         <div class="col">
-            @component('laraconsent::components.inputs.textarea',[
+            @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.textarea',[
                         'name' => 'text',
                         'id'=>'laraConsentText',
                         'label'=>__('Option Text'),

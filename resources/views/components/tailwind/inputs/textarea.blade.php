@@ -1,6 +1,6 @@
 <div class="form-group">
 
-<label class="label">{{ $label ?? '' }}
+<label class=form-label">{{ $label ?? '' }}
     @isset($required)
         &nbsp;<span class="text-danger">*</span>
     @endisset
