@@ -4,6 +4,6 @@
 @section('metaTitle',__('laraconsent::user.show-page-title'))
 
 @section('content')
-    @component('vendor.ekoukltd.laraconsent.user-consent.'.config('laraconsent.css_format').'.widgets.my_consents',['consentOptions'=>$consentOptions])@endcomponent
+    @component('vendor.ekoukltd.laraconsent.user-consent.'.config('laravel-admin-tools.css_format').'.widgets.my_consents',['consentOptions'=>$consentOptions])@endcomponent
 @endsection
 

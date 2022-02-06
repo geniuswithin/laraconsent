@@ -51,11 +51,6 @@ return [
     
     'email-template'=>'vendor.ekoukltd.laraconsent.layouts.email',
     
-    //Which templates to use: bootstrap4, bootstrap5, tailwind
-    //This will use the appropriate view paths
-    'css_format' =>'bootstrap5',
-    
-    
     'datatables'=>[
         'dom'=>[
             'bootstrap4'=>"<'row'<'col-sm-12 text-right'B>><'row'<'col-sm-12 col-md-6 text-left'f><'col-sm-12 col-md-6 text-right'i>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5 mb-3'l><'col-sm-12 col-md-7 mb-3'p>>",

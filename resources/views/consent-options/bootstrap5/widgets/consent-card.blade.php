@@ -17,7 +17,7 @@
     <div class="block-content">
         {!!$model->text!!}
         <hr>
-        @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.toggle_consent',['model'=>$model])@endcomponent
+        @component('laraconsent::components.'.config('laravel-admin-tools.css_format').'.inputs.toggle_consent',['model'=>$model])@endcomponent
         <p class="text-end fs-4">
         @if($model->published_at->lt(\Illuminate\Support\Carbon::now()))
                 <span class="badge rounded-pill bg-info"><b>{{__('Published On')}}</b>: {{$model->published_at->format('jS M Y')}}</span>

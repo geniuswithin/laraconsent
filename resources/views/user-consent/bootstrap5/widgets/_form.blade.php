@@ -19,7 +19,7 @@
                 {{__('Last Updated')}}: {{$model->updated_at->format('d M Y')}}
             </p>
 
-            @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.toggle_consent',['model'=>$model])@endcomponent
+            @component('laraconsent::components.'.config('laravel-admin-tools.css_format').'.inputs.toggle_consent',['model'=>$model])@endcomponent
 
         </x-admintools-block>
     @empty

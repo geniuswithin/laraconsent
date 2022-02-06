@@ -16,7 +16,7 @@
     </div>
     <div class="block-content">
         {!!$model->text!!}
-        @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.toggle_consent',['model'=>$model])@endcomponent
+        @component('laraconsent::components.'.config('laravel-admin-tools.css_format').'.inputs.toggle_consent',['model'=>$model])@endcomponent
         <div class="text-right text-lg">
         @if($model->published_at->lt(\Illuminate\Support\Carbon::now()))
                 <span class="badge badge-info"><b>{{__('Published On')}}</b>: {{$model->published_at->format('jS M Y')}}</span>

@@ -117,9 +117,9 @@ class ConsentOptionsUsersDatatables extends DataTable
         return $builder->minifiedAjax()
             ->responsive(false)
             ->info(true)
-            ->dom(config('laraconsent.datatables.dom.'.config('laraconsent.css_format')))
+            ->dom(config('laraconsent.datatables.dom.'.config('laravel-admin-tools.css_format')))
             ->language([
-                           'processing'        => '<i class="fa fa-4x fa-cog fa-spin text-warning"></i> Loading Data',
+                           'processing'        => config('laraconsent.datatables.processing'),
                            'search'            => "_INPUT_",
                            'searchPlaceholder' => "Search..",
                            'info'              => "<strong>_TOTAL_</strong> Users",
@@ -134,7 +134,7 @@ class ConsentOptionsUsersDatatables extends DataTable
             )
             ->parameters([
                              'classes' => [
-                                 'sWrapper'      => "dataTables_wrapper dt-".config('laraconsent.css_format'),
+                                 'sWrapper'      => "dataTables_wrapper dt-".config('laravel-admin-tools.css_format'),
                                  'sFilterInput'  => "form-control form-control-lg",
                                  'sLengthSelect' => "form-control form-control-lg",
                              ]

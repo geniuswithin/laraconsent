@@ -26,7 +26,7 @@ class ConsentOptionsDatatables extends DataTable
                 $query->whereRaw("title like ?", ["%{$keyword}%"]);
                 $query->orWhereRaw("text like ?", ["%{$keyword}%"]);
             })
-            ->addColumn('card', 'laraconsent::consent-options.'.config('laraconsent.css_format','bootstrap4').'.widgets.consent-card')
+            ->addColumn('card', 'laraconsent::consent-options.'.config('laravel-admin-tools.css_format','bootstrap4').'.widgets.consent-card')
             ->rawColumns(['card']);
     }
     
@@ -71,9 +71,9 @@ class ConsentOptionsDatatables extends DataTable
         return $builder->minifiedAjax()
             ->responsive(true)
             ->info(true)
-            ->dom(config('laraconsent.datatables.dom.'.config('laraconsent.css_format')))
+            ->dom(config('laraconsent.datatables.dom.'.config('laravel-admin-tools.css_format')))
             ->language([
-                           'processing'        => '<span class="text-warning"><i class="fa fa-2x fa-cog fa-spin me-3 mr-3" style=" vertical-align: middle;"></i> Loading Data</span>',
+                           'processing'        => config('laravel-admin-tools.datatables.processing'),
                            'search'            => "_INPUT_",
                            'searchPlaceholder' => "Search contracts...",
                            'info'              => "<strong>_TOTAL_</strong> Contract Templates",
@@ -89,7 +89,7 @@ class ConsentOptionsDatatables extends DataTable
             ->buttons([])
             ->parameters([
                              'classes' => [
-                                 'sWrapper'      => "dataTables_wrapper dt-".config('laraconsent.css_format'),
+                                 'sWrapper'      => "dataTables_wrapper dt-".config('laravel-admin-tools.css_format'),
                                  'sFilterInput'  => "form-control form-control-lg",
                                  'sLengthSelect' => "form-control form-control-lg",
                              ],

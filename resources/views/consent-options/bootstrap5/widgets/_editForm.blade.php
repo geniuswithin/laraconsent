@@ -23,7 +23,7 @@
 
     <x-admintools-block title="Edit">
 
-        @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.text', [
+        @component('laraconsent::components.'.config('laravel-admin-tools.css_format').'.inputs.text', [
              'name' => 'title',
              'id' => 'title',
              'label' => __('Title'),
@@ -32,7 +32,7 @@
              'required' => 'required'
         ])@endcomponent
 
-        @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.text', [
+        @component('laraconsent::components.'.config('laravel-admin-tools.css_format').'.inputs.text', [
             'name' => 'label',
             'id' => 'label',
             'label' => __('Label for checkbox'),
@@ -41,7 +41,7 @@
             'required' => 'required'
        ])@endcomponent
 
-        @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.text', [
+        @component('laraconsent::components.'.config('laravel-admin-tools.css_format').'.inputs.text', [
             'name' => 'sort_order',
             'id' => 'sort_order',
             'label' => __('Sort Order'),
@@ -50,7 +50,7 @@
             'required' => 'required'
        ])@endcomponent
 
-        @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.toggle_inline',[
+        @component('laraconsent::components.'.config('laravel-admin-tools.css_format').'.inputs.toggle_inline',[
                          'name'=>'enabled',
                          'id'=>'enabled',
                          'groupClass'=>'toggleConsentStatus',
@@ -62,7 +62,7 @@
                          'left'=>true
               ])@endcomponent
 
-        @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.toggle_inline',[
+        @component('laraconsent::components.'.config('laravel-admin-tools.css_format').'.inputs.toggle_inline',[
                          'name'=>'is_mandatory',
                          'id'=>'is_mandatory',
                          'label'=>__("Is Mandatory"),
@@ -70,7 +70,7 @@
                          'left'=>true
               ])@endcomponent
 
-        @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.toggle_inline',[
+        @component('laraconsent::components.'.config('laravel-admin-tools.css_format').'.inputs.toggle_inline',[
                                 'name'=>'force_user_update',
                                 'id'=>'force_user_update',
                                 'label'=>__("Require all users to re-confirm after this update"),
@@ -78,7 +78,7 @@
                                 'left'=>true
                      ])@endcomponent
 
-        @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.select',[
+        @component('laraconsent::components.'.config('laravel-admin-tools.css_format').'.inputs.select',[
                           'name'=>'models[]',
                           'id'=>'models',
                           'class'=>'js-select2',
@@ -88,7 +88,7 @@
                           'options'=>$consentOption->getAllUserTypes()
                ])@endcomponent
 
-        @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.date_picker',[
+        @component('laraconsent::components.'.config('laravel-admin-tools.css_format').'.inputs.date_picker',[
             'name'=>'published_at',
             'label'=>__("Publish Date"),
             'required'=>true,
@@ -96,7 +96,7 @@
             'value'=>$consentOption->published_at ?? old('published_at')
         ])@endcomponent
 
-        @component('laraconsent::components.'.config('laraconsent.css_format').'.inputs.textarea',[
+        @component('laraconsent::components.'.config('laravel-admin-tools.css_format').'.inputs.textarea',[
                     'name' => 'text',
                     'id'=>'laraConsentText',
                     'label'=>__('Option Text'),
