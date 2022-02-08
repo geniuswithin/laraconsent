@@ -1,8 +1,7 @@
 
-
 //Optional Text Editors
 //@import "plugins/froala";
-@import "plugins/summernote";
+//@import "plugins/summernote";
 
 
 label.required:after {  content:"* required"; color: red;font-size: smaller; font-weight: bold}
@@ -22,33 +21,10 @@ label.required:after {  content:"* required"; color: red;font-size: smaller; fon
 
 }
 
-div.dataTables_wrapper,
-div.dataTables_wrapper.dt-bootstrap5 {
-
-  div.dataTables_filter {
-    text-align: left!important;
-  }
-
-  div.dataTables_filter input {
-    margin-left: 0;
-  }
-
-  #dt_consent_options_datatables.dataTable td {
-    padding: 0.75rem 0 !important;
-  }
+.dark-mode .ck.ck-editor {
+  color: #bec8d5!important;
 }
 
-div.dataTables_wrapper.dt-bootstrap5 div.dataTables_processing {
-  font-size: 1.25rem !important;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: auto;
-  padding: 1em;
-  margin-left: 0;
-  margin-top:0;
-  text-align: center;
-  opacity: 0.8;
+:root {
+  --ck-color-base-background: #171e28!important;
 }
-div.dataTables_wrapper div.dataTables_filter input {
-  margin-left: 0!important;}

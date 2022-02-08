@@ -98,7 +98,7 @@
 
         @component('laraconsent::components.'.config('laravel-admin-tools.css_format').'.inputs.textarea',[
                     'name' => 'text',
-                    'id'=>'laraConsentText',
+                    'id'=>'js-ckeditor5-classic',
                     'label'=>__('Option Text'),
                     'class'=>'js-'.config('laraconsent.editor'),
                     'required'=>true,
@@ -127,9 +127,10 @@
 @push('scripts')
     <script>
         jQuery(function () {
-            LaraConsent.helpers(['select2', 'statusToggles', 'flatpickr']);
+            console.log('init editpage');
+            window.LaraConsent.helpers(['select2', 'statusToggles', 'flatpickr']);
             @if(config('laraconsent.editor'))
-            LaraConsent.helpers(['{{config('laraconsent.editor')}}']);
+            window.LaraConsent.helpers('{{config('laraconsent.editor')}}');
             @endif
         });
     </script>

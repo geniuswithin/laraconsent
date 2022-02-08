@@ -1,6 +1,5 @@
 
-/** Summernote Editor **/
-import 'summernote/dist/summernote';
+import "./plugins/ckeditor5-classic/build/ckeditor"
 
 /**
  * Uncomment these lines for Froala Editor -> Requires a license

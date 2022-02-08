@@ -26,11 +26,12 @@ return [
         'App\Models\User',
         'App\Models\Admin',
     ],
+    
     //Which HTML Editor to use
-    //Chooose from froala, summernote, ckeditor5-classic
+    //Chooose from froala, summernote, ckeditor
     //Froala requires a licence key in .env MIX_FROALA_KEY=xxxxxx
     //Summernote doesn't work with bootstrap5.
-    'editor'=>'ckeditor5',
+    'editor'=>'ckeditor',
     
     //Whether to log when consent has been given
     //Probably only interested in logging the mandatory events

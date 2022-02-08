@@ -9,7 +9,7 @@ export default class Laraconsent {
 
     _laraConsentInit() {
         this.helpers([
-            'initCSRF'
+
         ]);
         console.log('User Consent Initialised');
     }

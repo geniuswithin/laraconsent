@@ -8,11 +8,9 @@ export default class Helpers {
      */
    static run(helpers, options = {}) {
        let allHelpers = {
-           ckeditor: () => this.ckeditor(),
+           ckeditor: () => this.ckeditor5(),
            flatpickr: () => this.flatpickr(),
            froala: ()=> this.froala(),
-           initCSRF: ()=> this.initCSRF(),
-           notify: (options)=> this.notify(options),
            select2: () => this.select2(),
            slugifyInput: () => this.slugifyInput(),
            summernote: () => this.summernote(),
@@ -35,17 +33,6 @@ export default class Helpers {
        }
    }
 
-    /**
-     * Add Laravel CSRF token from meta tag
-     */
-   static initCSRF()
-   {
-       jQuery.ajaxSetup({
-           headers: {
-               'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-           }
-       });
-   }
 
     /**
      * Load previous version of the consent when selected in dropdown
@@ -203,7 +190,6 @@ export default class Helpers {
         let ckeditor5Inline = document.querySelector('#js-ckeditor5-inline');
         let ckeditor5Full = document.querySelector('#js-ckeditor5-classic');
 
-        console.log(ckeditor5Inline,ckeditor5Full);
         // Init inline text editor
         if (ckeditor5Inline) {
             InlineEditor
@@ -252,18 +238,18 @@ export default class Helpers {
                     method: "POST",
                     success: function (data) {
                         if (data.hasOwnProperty('success')) {
-                            LaraConsent.helpers('notify', {type: data.colour, icon: 'fa fa-check me-1', message: data.message});
+                            LaraAdminTools.helpers('notify', {type: data.colour, icon: 'fa fa-check me-1', message: data.message});
                         }
                         if (data.hasOwnProperty('error')) {
                             //Undo Toggle
                             input.prop("checked", !input.prop("checked"));
-                            LaraConsent.helpers('notify', {type: 'danger', icon: 'fa fa-times me-1', message: data.message});
+                            LaraAdminTools.helpers('notify', {type: 'danger', icon: 'fa fa-times me-1', message: data.message});
                         }
 
                     },
                     error: function () {
                         input.prop("checked", !input.prop("checked"));
-                        LaraConsent.helpers('notify', {type: 'danger', icon: 'fa fa-times me-1', message: "There was an error changing status"});
+                        LaraAdminTools.helpers('notify', {type: 'danger', icon: 'fa fa-times me-1', message: "There was an error changing status"});
                     }
                 });
             });
@@ -284,57 +270,24 @@ export default class Helpers {
                 method: "POST",
                 success: function (data) {
                     if (data.hasOwnProperty('success')) {
-                        console.log(data);
-                        LaraConsent.helpers('notify', {type: data.colour, icon: 'fa fa-check me-1', message: data.message});
+                        LaraAdminTools.helpers('notify', {type: data.colour, icon: 'fa fa-check me-1', message: data.message});
                     }
                     if (data.hasOwnProperty('error')) {
                         //Undo Toggle
                         input.prop("checked", !input.prop("checked"));
                         button.toggleClass('custom-control-success custom-control-light');
-                        LaraConsent.helpers('notify', {type: 'danger', icon: 'fa fa-times me-1', message: data.message});
+                        LaraAdminTools.helpers('notify', {type: 'danger', icon: 'fa fa-times me-1', message: data.message});
                     }
 
                 },
                 error: function () {
                     input.prop("checked", !input.prop("checked"));
                     button.toggleClass('custom-control-success custom-control-light');
-                    LaraConsent.helpers('notify', {type: 'danger', icon: 'fa fa-times me-1', message: "There was an error changing status"});
+                    LaraAdminTools.helpers('notify', {type: 'danger', icon: 'fa fa-times me-1', message: "There was an error changing status"});
                 }
             });
         });
 
     }
 
-    /**
-     * Bootstrap Growl  - pretty popup notifications
-     * @param options
-     */
-    static notify(options = {}) {
-            jQuery.notify({
-                    icon: options.icon || '',
-                    message: options.message,
-                    url: options.url || ''
-                },
-                {
-                    element: options.element || 'body',
-                    type: options.type || 'info',
-                    placement: {
-                        from: options.from || 'top',
-                        align: options.align || 'right'
-                    },
-                    allow_dismiss: (options.allow_dismiss === false) ? false : true,
-                    newest_on_top: (options.newest_on_top === false) ? false : true,
-                    showProgressbar: options.show_progress_bar ? true : false,
-                    offset: options.offset || 20,
-                    spacing: options.spacing || 10,
-                    z_index: options.z_index || 1033,
-                    delay: options.delay || 5000,
-                    timer: options.timer || 1000,
-                    animate: {
-                        enter: options.animate_enter || 'animated fadeIn',
-                        exit: options.animate_exit || 'animated fadeOutDown'
-                    }
-                });
-
-    }
 }
