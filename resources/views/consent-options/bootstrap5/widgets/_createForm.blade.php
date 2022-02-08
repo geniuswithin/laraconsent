@@ -84,7 +84,7 @@
 
         @component('laraconsent::components.'.config('laravel-admin-tools.css_format').'.inputs.textarea',[
                     'name' => 'text',
-                    'id'=>'consentText',
+                    'id'=>'js-ckeditor5-classic',
                     'label'=>__('Option Text'),
                     'class'=>'js-'.config('laraconsent.editor'),
                     'required'=>true,
@@ -112,7 +112,7 @@
         jQuery(function () {
             LaraConsent.helpers(['slugifyInput', 'select2', 'flatpickr']);
             @if(config('laraconsent.editor'))
-            //LaraConsent.helpers(['{{config('laraconsent.editor')}}']);
+            LaraConsent.helpers(['{{config('laraconsent.editor')}}']);
             @endif
         });
     </script>
