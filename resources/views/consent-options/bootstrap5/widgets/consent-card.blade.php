@@ -3,7 +3,7 @@
         <div class="h4 mb-0"><a href="{{route(config('laraconsent.routes.admin.prefix').'.show',['consentOption'=>$model])}}">{{$model}}</a></div>
         <div class="ms-auto d-flex align-items-center">
             @if($model->isHighestVersion)
-            <a type="button" class="btn btn-sm btn-warning me-2" data-toggle="tooltip" title="{{__('Edit')}} {{$model}}" href="{{route(config('laraconsent.routes.admin.prefix').'.edit',['consentOption'=>$model])
+            <a type="button" class="btn btn-sm btn-warning me-2" data-bs-toggle="tooltip" title="{{__('Edit')}} {{$model}}" href="{{route(config('laraconsent.routes.admin.prefix').'.edit',['consentOption'=>$model])
             }}">
                 <i class="fa fa-pencil-alt"></i> {{__('Edit')}}
             </a>

@@ -2,15 +2,13 @@
 
 namespace Ekoukltd\LaraConsent;
 
-use App\Models\User;
 use Ekoukltd\LaraConsent\Console\ActivatePendingConsents;
-use Ekoukltd\LaraConsent\Http\Middleware\CheckLaraConsent;
+use Ekoukltd\LaraConsent\Http\Middleware\ForceRedirectToUnapprovedConsents;
 use Ekoukltd\LaraConsent\Models\ConsentOption;
 use Ekoukltd\LaraConsent\Models\ConsentOptionUser;
 use Ekoukltd\LaraConsent\Providers\EventServiceProvider;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -32,7 +30,7 @@ class LaraConsentServiceProvider extends ServiceProvider
         $router = $this->app->make(Router::class);
         
         if(config('laraconsent.middleware.enable')){
-            $router->pushMiddlewareToGroup('web', CheckLaraConsent::class);
+            $router->pushMiddlewareToGroup('web', ForceRedirectToUnapprovedConsents::class);
         }
 
         // Publishing is only necessary when using the CLI.
