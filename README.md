@@ -99,7 +99,18 @@ Two database tables will be created:-
 
 consent_options stores a versioned history of each consent form and consentables records each users consent form interaction history.
 
+## Force users to accept consent 
+To redirect a user to accept consent page if one is outstanding, update your App\Http\Kernel.php  'web' middlewaregroup to include:-
+```\Ekoukltd\LaraConsent\Http\Middleware\ForceRedirectToUnapprovedConsents::class```
 
+##Authentication
+User routes should be available to any logged in user.  
+
+In the config\laraconsent.php file make sure to include auth:guardname of required guards that should be able to view their consent
+``` php
+'prefix'     => 'user-consent',
+'middleware' => ['web','auth:admin,web']
+```
 ## Translations
 All phrases may be updated in the translation files:-
 ``` bash

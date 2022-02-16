@@ -27,11 +27,14 @@ class LaraConsentServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'laraconsent');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->registerRoutes();
-        $router = $this->app->make(Router::class);
         
-        if(config('laraconsent.middleware.enable')){
-            $router->pushMiddlewareToGroup('web', ForceRedirectToUnapprovedConsents::class);
-        }
+        
+		//This breaks on Laravel9
+	    //Requiring user to set themselves in their own Kernel middleware group
+//        if(config('laraconsent.middleware.enable')){
+//	          $router = $this->app->make(Router::class);
+//            $router->pushMiddlewareToGroup('web', ForceRedirectToUnapprovedConsents::class);
+//        }
 
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
