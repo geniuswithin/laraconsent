@@ -102,7 +102,7 @@ class LaraConsentServiceProvider extends ServiceProvider
     
         // Publishing CSS & JS assets.
         $this->publishes([
-                             __DIR__.'/../resources/assets' => base_path('resources/assets/ekoukltd/laraconsent'),
+                             __DIR__.'/../resources/assets' => base_path('resources/assets/vendor/ekoukltd/laraconsent'),
                          ], 'laraconsent.assets');
     
         $this->publishes([

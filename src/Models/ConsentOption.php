@@ -244,8 +244,8 @@ class ConsentOption extends Model
     public function setCurrentVersion()
     {
         $this->disableAllVersions();
-        $this->is_current = true;
-        return $this->save();
+        $this->fresh()->update(['is_current' => true]);
+        return $this;
     }
     
     /**
