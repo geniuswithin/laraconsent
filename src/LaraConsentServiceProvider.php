@@ -115,7 +115,7 @@ class LaraConsentServiceProvider extends ServiceProvider
         $this->app->booted(function () {
             $schedule = $this->app->make(Schedule::class);
             $schedule->command('laraconsent:activate-drafts')
-                ->everyTenMinutes();
+                ->twiceDaily();
         });
     }
     
