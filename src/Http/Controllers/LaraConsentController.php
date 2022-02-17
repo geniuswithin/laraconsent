@@ -28,7 +28,8 @@ class LaraConsentController extends Controller
         return view('vendor.ekoukltd.laraconsent.consent-options.index')->with(
             [
                 'dataTable' => $dataTable->html(),
-                'classes'   => 'table-bordered table-striped table-hover table-vcenter'
+                'classes'   => 'table-bordered table-striped table-hover table-vcenter',
+                'pageTitle' => __('laraconsent::user.index-page-title')
             ]
         );
     }

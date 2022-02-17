@@ -1,7 +1,7 @@
 @extends('lat::layouts.backend')
 
 @section('pageHeader')
-    <x-admintools-page-title icon="check-square" :title="__('laraconsent::admin.index-page-title')" />
+    <x-admintools-page-title icon="check-square" :title="$pageTitle" />
 @endsection
 
 

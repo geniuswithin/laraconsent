@@ -2,6 +2,7 @@
 
 return [
     'request-page-title'=>'Your Consent is required',
+    'index-page-title'=>'Given Consents',
     'show-page-title'=>'Your Contracts',
     'print-meta-title'=>'Your Consents',
     'print-description'=>'Your Consent Agreements',
