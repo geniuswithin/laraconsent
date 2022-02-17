@@ -75,23 +75,24 @@ class ConsentOptionsUsersDatatables extends DataTable
             $query->addSelect(DB::raw("MAX(CASE WHEN consentables.key = '$key' THEN accepted ELSE NULL END) AS '".$key."'"));
         }
         $query->groupBy(['user','consentable_type']);
-        $select = "COALESCE( ";
-        foreach ($models as $model)
-        {
-            $model = app($model);
-            $table = with(new $model())->getTable();
-            
-            $query->leftJoin($table,function($join) use ($model,$table){
-                    $join->on($table.'.id','=','consentable_id');
-                    $join->where('consentable_type','like',"%".class_basename($model)."%");
-            });
-            $select.=$table.'.email,';
-            $query->addSelect(DB::raw($table.".email as ".$table."email") );
-            $query->groupBy([$table."email"]);
-        }
-        $select = rtrim($select, ',').") as groupedemail";
-        $query->addSelect(DB::raw($select));
-        
+	    if(count($models)) {
+		    $select = "COALESCE( ";
+		    foreach ($models as $model) {
+			    $model = app($model);
+			    $table = with(new $model())->getTable();
+			
+			    $query->leftJoin($table, function($join) use ($model, $table)
+			    {
+				    $join->on($table.'.id', '=', 'consentable_id');
+				    $join->where('consentable_type', 'like', "%".class_basename($model)."%");
+			    });
+			    $select .= $table.'.email,';
+			    $query->addSelect(DB::raw($table.".email as ".$table."email"));
+			    $query->groupBy([$table."email"]);
+		    }
+		    $select = rtrim($select, ',').") as groupedemail";
+		    $query->addSelect(DB::raw($select));
+	    }
 
         return $query;
     }
