@@ -1,8 +1,9 @@
 @extends('lat::layouts.backend')
 
 @section('pageHeader')
-    <i class='fa fa-check-square'></i> {{__('laraconsent::admin.index-page-title')}}
+    <x-admintools-page-title icon="check-square" :title="__('laraconsent::admin.index-page-title')" />
 @endsection
+
 
 @section('metaTitle',__('laraconsent::admin.index-page-title'))
 

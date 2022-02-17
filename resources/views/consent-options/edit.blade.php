@@ -1,6 +1,10 @@
 @extends('lat::layouts.backend')
 
-@section('pageHeader',__('laraconsent::admin.edit-page-title',['title'=>$consentOption->title,'version'=>$consentOption->version]))
+@section('pageHeader')
+    <x-admintools-page-title icon="check-square" :title="__('laraconsent::admin.edit-page-title',['title'=>$consentOption->title,'version'=>$consentOption->version])" />
+@endsection
+
+
 @section('metaTitle',__('laraconsent::admin.edit-page-title',['title'=>$consentOption->title,'version'=>$consentOption->version]))
 
 @section('content')
