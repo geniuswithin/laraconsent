@@ -141,7 +141,7 @@ class ConsentOptionsUsersDatatables extends DataTable
                              ]
                          ])
             ->pagingType('full_numbers')
-            ->autoWidth(true)
+            ->autoWidth(false)
             ->scrollX(true);
     }
     
