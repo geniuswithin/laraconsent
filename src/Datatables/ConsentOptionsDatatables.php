@@ -26,7 +26,7 @@ class ConsentOptionsDatatables extends DataTable
                 $query->whereRaw("title like ?", ["%{$keyword}%"]);
                 $query->orWhereRaw("text like ?", ["%{$keyword}%"]);
             })
-            ->addColumn('card', 'laraconsent::consent-options.'.config('laravel-admin-tools.css_format','bootstrap4').'.widgets.consent-card')
+            ->addColumn('card', 'vendor.ekoukltd.laraconsent.consent-options.'.config('laravel-admin-tools.css_format','bootstrap4').'.widgets.consent-card')
             ->rawColumns(['card']);
     }
     
