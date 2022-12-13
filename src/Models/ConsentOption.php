@@ -88,6 +88,16 @@ class ConsentOption extends Model
                 'published_at', '<=', now()
             );
     }
+	
+	public static function allActiveConsents()
+	{
+		return self::query()
+		           ->where('is_current', true)
+		           ->where('enabled', true)
+		           ->whereDate(
+			           'published_at', '<=', now()
+		           );
+	}
     
     /**
      * @return mixed
@@ -157,6 +167,16 @@ class ConsentOption extends Model
     {
         return ConsentOptionFactory::new();
     }
+	
+	public function nextConsentReadyToActivate()
+	{
+		return ConsentOption::query()
+		             ->where('is_current', false)
+		             ->where('enabled', false)
+		             ->whereDate('published_at', '<=', now())
+		             ->whereDate('published_at', '>=', $this->published_at)
+		             ->first();
+	}
     
     /**
      * @param $user
@@ -237,14 +257,15 @@ class ConsentOption extends Model
             ->where('key', $this->key)
             ->get();
     }
-    
-    /**
-     * @return bool
-     */
+	
+	/**
+	 * @return $this
+	 */
     public function setCurrentVersion()
     {
-        $this->disableAllVersions();
-        $this->fresh()->update(['is_current' => true]);
+        $this->disableAllVersions()
+             ->fresh()
+             ->update(['is_current' => true,'enabled'=>true]);
         return $this;
     }
     
@@ -253,10 +274,12 @@ class ConsentOption extends Model
      */
     protected function disableAllVersions()
     {
-        return self::query()
+       self::query()
             ->where('is_current', '=', 1)
             ->whereIn('id', $this->getAllVersionIds())
-            ->update(['is_current' => 0]);
+            ->update(['is_current' => false,'enabled'=>false]);
+	   
+		return $this;
     }
     
     /**

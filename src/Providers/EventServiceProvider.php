@@ -14,7 +14,8 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         //Triggered after each consent option is saved.
         ConsentUpdated::class => [
-            LogConsentUpdated::class,
+			//Notify someone consent has been accepted
+            //LogConsentUpdated::class,
             //Add update mailchimp subscription event here
         ],
         //Triggered after all consent options have been saved

@@ -17,25 +17,16 @@ class ActivatePendingConsents extends Command
     public function handle()
     {
         $this->info('Checking for pending consents...');
-        
-
-        $readyToActivateIds = DB::table('consent_options')->select(DB::raw('max(id) as id,`key`'))
-            ->whereDate('published_at','<=',Carbon::now())
-            ->where('is_current',false)
-            ->groupBy('key')
-            ->pluck('id')
-            ->toArray();
-        
-        if(count($readyToActivateIds)){
-            $pendingConsents = ConsentOption::whereIn('id',$readyToActivateIds)->get();
-            foreach($pendingConsents as $pendingConsent)
-            {
-                Log::info('Setting '.$pendingConsent->title.' active to version '.$pendingConsent->version);
-                $pendingConsent->setCurrentVersion();
-            }
-        }
-      
-        
+		
+		$currentConsents = ConsentOption::allActiveConsents()->get();
+		
+		$currentConsents->each(function($currentConsent){
+			if($pendingConsent  = $currentConsent->nextConsentReadyToActivate()){
+				$pendingConsent->setCurrentVersion();
+			}
+				
+		});
+		
         
     }
 }
