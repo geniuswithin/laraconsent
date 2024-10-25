@@ -2,11 +2,13 @@
 
 namespace Ekoukltd\LaraConsent\Models;
 
+use App\Models\Company;
 use Ekoukltd\LaraConsent\Database\Factories\ConsentOptionFactory;
 use Ekoukltd\LaraConsent\Traits\UserCount;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -131,12 +133,29 @@ class ConsentOption extends Model
      */
     public static function getAllActiveKeysbyUserClass($className): array
     {
-        return self::where('models','like',"%$className%")
+        $query = self::where('models','like',"%$className%")
             ->where('is_current',true)
             ->where('enabled', true)
             ->where('published_at','<=',\Illuminate\Support\Carbon::now())
+        ;
+
+        // If the user is logged in
+        // and has a company assigned with consent options
+        // then uses these to filter
+        $user = auth()->user();
+        if ($user && $user->department && $user->department->company) {
+            $consentOptions = $user->department->company->consentOptions()->pluck('id');
+            if ($consentOptions->isNotEmpty()) {
+                $query = $query->whereIn('id', $consentOptions->toArray());
+            }
+        }
+
+        $result = $query
             ->pluck('key')
-            ->toArray();
+            ->toArray()
+        ;
+
+        return $result;
     }
     
     /**
@@ -404,5 +423,33 @@ class ConsentOption extends Model
     {
         $this->enabled = !$this->enabled;
         return $this;
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function companies(): BelongsToMany
+    {
+        return $this->belongsToMany(Company::class, 'company_consent_option');
+    }
+
+    // Get the current, enabled and published consent options
+    // for multi select on company admin screen
+    public static function getSelect()
+    {
+        return self::query()
+            ->where('is_current',true)
+            ->where('enabled', true)
+            ->where('published_at','<=',\Illuminate\Support\Carbon::now())
+            ->pluck('title', 'id')
+            ->map(
+                function ($title, $id) {
+                    return (object) [
+                        'id'   => $id,
+                        'name' => $title,
+                    ];
+                }
+            )
+        ;
     }
 }

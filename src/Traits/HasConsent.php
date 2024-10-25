@@ -51,7 +51,6 @@ trait HasConsent
             )
             ->orderBy('sort_order')
             ->get();
-      
     }
     
     /**
@@ -81,8 +80,7 @@ trait HasConsent
      * @return mixed
      */
     public function activeConsents()
-    {
-        
+    {    
         $usersSeenConsents = DB::table('consentables')
             ->selectRaw('max(consent_option_id) as id')
             ->where('consentable_id',$this->id)

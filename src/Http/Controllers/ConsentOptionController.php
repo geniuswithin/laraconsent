@@ -63,10 +63,20 @@ class ConsentOptionController extends Controller
 			//create a new version
 			$data[ 'version' ] = $consentOption->nextVersionNumber;
 			$newConsent        = ConsentOption::create($data);
+
+			// Transfer companies from the old version to the new version
+			$companies = $consentOption->companies;
+			if ($companies->isNotEmpty()) {
+				// Sync companies with the new consent
+				$newConsent->companies()->sync($companies->pluck('id')->toArray());
+				// Detach all companies from the old consent
+				$consentOption->companies()->detach($companies->pluck('id')->toArray());
+			}
 			
 			if($newConsent->canPublish) {
 				$newConsent->setCurrentVersion();
 			}
+
 		}
 		else {
 			//update this version
