@@ -44,9 +44,9 @@ class LaraConsentController extends Controller
         
         $consentOptions = $user->outstandingConsents();
         if ($consentOptions->count() < 1) {
-            return redirect()
-                ->back()
-                ->withErrors('No required Consents');
+            return redirect(route(config('laraconsent.routes.user.prefix').'.show'))
+                ->withErrors('No required Consents')
+            ;
         }
         
         return view('vendor.ekoukltd.laraconsent.user-consent.request', compact('consentOptions'));
