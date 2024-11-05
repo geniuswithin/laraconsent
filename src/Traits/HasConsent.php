@@ -80,14 +80,31 @@ trait HasConsent
      * @return mixed
      */
     public function activeConsents()
-    {    
-        $usersSeenConsents = DB::table('consentables')
+    {
+        $usersSeenConsentsQuery = DB::table('consentables')
             ->selectRaw('max(consent_option_id) as id')
             ->where('consentable_id',$this->id)
             ->where('consentable_type',get_class($this))
+        ;
+
+        // If the user is logged in
+        // and has a company assigned with consent options
+        // then uses these to filter
+        $user = auth()->user();
+        if ($user && $user->department && $user->department->company) {
+            $consentOptions = $user->department->company->consentOptions()->pluck('id');
+            if ($consentOptions->isNotEmpty()) {
+                $usersSeenConsentsQuery = $usersSeenConsentsQuery
+                    ->whereIn('consent_option_id', $consentOptions->toArray())
+                ;
+            }
+        }
+
+        $usersSeenConsents = $usersSeenConsentsQuery
             ->groupBy('key')
             ->pluck('id')
-            ->toArray();
+            ->toArray()
+        ;
         
         return  $this->consents()
             ->wherePivotIn('consent_option_id', $usersSeenConsents)
