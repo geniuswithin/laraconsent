@@ -73,7 +73,7 @@ class ConsentOption extends Model
      */
     public function __toString()
     {
-        return $this->title." V".$this->version;
+        return $this->title;
     }
     
     /**
